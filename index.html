@@ -1,342 +1,648 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vashi Tours & Travels | Royal Classy Experiences</title>
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vashi Tours & Travels | Luxury Experiences</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C5A059;
+  --gold-light: #e8d5aa;
+  --gold-dark: #8a6e3a;
+  --dark: #0d0d0d;
+  --dark2: #141414;
+  --dark3: #1c1c1c;
+  --cream: #fdfaf4;
+  --text: #1a1a1a;
+  --text-muted: #666;
+  --white: #ffffff;
+  --radius: 12px;
+  --radius-lg: 20px;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+img { display: block; }
 
-    <style>
-        :root {
-            --gold: #C5A059;
-            --gold-dim: #997d46;
-            --dark-bg: #1a1a1a;
-            --cream: #fdfbf7;
-        }
+/* ── NAVBAR ── */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 9999;
+  padding: 0 6%; height: 70px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(10,10,10,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(197,160,89,0.2);
+  transition: all 0.4s;
+}
+nav.scrolled { background: rgba(10,10,10,0.97); }
+.nav-logo { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 1.5rem; letter-spacing: 3px; text-decoration: none; }
+.nav-logo span { font-style: italic; color: #fff; font-size: 0.75rem; display: block; letter-spacing: 5px; margin-top: -4px; }
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; transition: color 0.3s; position: relative; }
+.nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width 0.3s; }
+.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover::after { width: 100%; }
+.nav-cta { background: var(--gold); color: #fff; padding: 10px 24px; border-radius: 6px; font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; text-decoration: none; transition: all 0.3s; }
+.nav-cta:hover { background: var(--gold-dark); }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+.hamburger span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: all 0.3s; }
+.mobile-menu { display: none; position: fixed; inset: 0; background: var(--dark); z-index: 9998; flex-direction: column; align-items: center; justify-content: center; gap: 40px; }
+.mobile-menu.open { display: flex; }
+.mobile-menu a { color: #fff; text-decoration: none; font-size: 1.5rem; font-family: 'Playfair Display', serif; letter-spacing: 2px; transition: color 0.3s; }
+.mobile-menu a:hover { color: var(--gold); }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+/* ── HERO ── */
+.hero { height: 100vh; position: relative; overflow: hidden; }
+.hero .swiper, .hero .swiper-wrapper, .hero .swiper-slide { height: 100%; }
+.hero .swiper-slide { background-size: cover; background-position: center; }
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 10;
+  background: linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.1) 100%);
+  display: flex; align-items: center; padding: 0 8%;
+}
+.hero-text { max-width: 640px; }
+.hero-eyebrow { color: var(--gold); font-size: 0.75rem; letter-spacing: 6px; text-transform: uppercase; font-weight: 500; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+.hero-eyebrow::before { content: ''; display: block; width: 40px; height: 1px; background: var(--gold); }
+.hero-text h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 6vw, 5rem); color: #fff; line-height: 1.1; margin-bottom: 24px; }
+.hero-text h1 em { color: var(--gold); font-style: italic; }
+.hero-sub { color: rgba(255,255,255,0.7); font-size: 1rem; margin-bottom: 40px; font-weight: 300; line-height: 1.8; }
+.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+.btn-primary { background: var(--gold); color: #fff; padding: 16px 40px; border-radius: 8px; font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: all 0.3s; }
+.btn-primary:hover { background: var(--gold-dark); transform: translateY(-2px); }
+.btn-ghost { background: transparent; color: #fff; padding: 16px 40px; border-radius: 8px; font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; text-decoration: none; border: 1px solid rgba(255,255,255,0.4); cursor: pointer; transition: all 0.3s; }
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+.hero-scroll { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 11; text-align: center; }
+.scroll-line { width: 1px; height: 50px; background: linear-gradient(to bottom, transparent, var(--gold)); margin: 0 auto 10px; animation: scrollPulse 2s infinite; }
+@keyframes scrollPulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
+.scroll-label { color: rgba(255,255,255,0.5); font-size: 0.65rem; letter-spacing: 4px; text-transform: uppercase; }
 
-        html { scroll-behavior: smooth; }
+/* ── STATS BAR ── */
+.stats-bar { background: var(--dark); padding: 40px 8%; display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; }
+.stat-item { text-align: center; padding: 30px 20px; border-right: 1px solid rgba(255,255,255,0.06); }
+.stat-item:last-child { border: none; }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--gold); font-weight: 700; }
+.stat-label { color: rgba(255,255,255,0.4); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; margin-top: 6px; }
 
-        body {
-            background-color: var(--cream);
-            color: #222;
-            font-family: 'Lato', sans-serif;
-            line-height: 1.8;
-        }
+/* ── SECTIONS ── */
+section { padding: 100px 8%; }
+.section-label { color: var(--gold); font-size: 0.72rem; letter-spacing: 5px; text-transform: uppercase; font-weight: 500; margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+.section-label::before { content: ''; display: block; width: 30px; height: 1px; background: var(--gold); }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); color: var(--dark); margin-bottom: 16px; line-height: 1.2; }
+.section-title em { color: var(--gold); font-style: italic; }
+.section-desc { color: var(--text-muted); max-width: 500px; font-size: 0.95rem; line-height: 1.8; margin-bottom: 60px; }
 
-        /* NAVIGATION */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 8%;
-            background: rgba(0, 0, 0, 0.9);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
-        }
+/* ── SERVICES ── */
+#services { background: var(--cream); }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+.service-card { background: #fff; border-radius: var(--radius-lg); padding: 40px 32px; border: 1px solid #e8e0d0; transition: all 0.4s; position: relative; overflow: hidden; }
+.service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 0; background: var(--gold); transition: height 0.4s; }
+.service-card:hover::before { height: 100%; }
+.service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.08); border-color: var(--gold-light); }
+.service-icon { width: 52px; height: 52px; border-radius: 12px; background: rgba(197,160,89,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 24px; font-size: 22px; }
+.service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 12px; color: var(--dark); }
+.service-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.8; }
+.service-link { display: inline-flex; align-items: center; gap: 8px; color: var(--gold); font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; text-decoration: none; margin-top: 20px; transition: gap 0.3s; }
+.service-link:hover { gap: 14px; }
 
-        nav h2 { 
-            font-family: 'Playfair Display', serif; 
-            color: var(--gold); 
-            letter-spacing: 4px;
-            font-size: 1.8rem;
-        }
+/* ── DESTINATIONS ── */
+#destinations { background: #f5f0e8; }
+.dest-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; grid-template-rows: 280px 280px; gap: 16px; }
+.dest-card { border-radius: var(--radius-lg); overflow: hidden; position: relative; cursor: pointer; }
+.dest-card:first-child { grid-row: 1 / 3; }
+.dest-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+.dest-card:hover img { transform: scale(1.08); }
+.dest-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 60%); display: flex; flex-direction: column; justify-content: flex-end; padding: 28px; }
+.dest-badge { background: var(--gold); color: #fff; font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; padding: 5px 12px; border-radius: 4px; width: fit-content; margin-bottom: 10px; }
+.dest-card-overlay h3 { color: #fff; font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 6px; }
+.dest-meta { color: rgba(255,255,255,0.65); font-size: 0.78rem; display: flex; gap: 16px; }
 
-        nav ul { display: flex; list-style: none; }
-        nav ul li { margin-left: 30px; }
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.8rem;
-            transition: 0.4s;
-        }
-        nav ul li a:hover { color: var(--gold); }
+/* ── EXPERIENCES ── */
+#experiences { background: var(--dark); }
+#experiences .section-title { color: #fff; }
+#experiences .section-desc { color: rgba(255,255,255,0.45); }
+.exp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2px; border-radius: var(--radius-lg); overflow: hidden; }
+.exp-card { background: var(--dark2); padding: 40px 28px; transition: background 0.3s; }
+.exp-card:hover { background: var(--dark3); }
+.exp-num { font-family: 'Playfair Display', serif; font-size: 3rem; color: rgba(197,160,89,0.15); font-weight: 700; margin-bottom: 16px; line-height: 1; }
+.exp-card h3 { color: #fff; font-size: 1rem; font-weight: 600; letter-spacing: 1px; margin-bottom: 10px; }
+.exp-card p { color: rgba(255,255,255,0.4); font-size: 0.85rem; line-height: 1.7; }
 
-        /* HERO SECTION */
-        /* Vogue Style Overlay */
-        .hero-content {
-            background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 100%);
-            justify-content: flex-start; /* Move text to the left */
-            padding-left: 1%;
-        }
+/* ── TESTIMONIALS ── */
+#testimonials { background: var(--cream); }
+.test-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+.test-card { background: #fff; border-radius: var(--radius-lg); padding: 36px; border: 1px solid #e8e0d0; }
+.test-stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 16px; letter-spacing: 3px; }
+.test-quote { color: var(--text); font-size: 0.95rem; line-height: 1.8; margin-bottom: 24px; font-style: italic; }
+.test-author { display: flex; align-items: center; gap: 14px; }
+.test-avatar { width: 44px; height: 44px; border-radius: 50%; background: rgba(197,160,89,0.15); display: flex; align-items: center; justify-content: center; font-weight: 600; color: var(--gold); font-size: 1rem; }
+.test-name { font-weight: 600; font-size: 0.9rem; color: var(--dark); }
+.test-trip { font-size: 0.75rem; color: var(--text-muted); }
 
-        .text-box {
-            border: none; /* Remove all borders */
-            text-align: left; /* Classy left-alignment */
-            background: none;
-            backdrop-filter: none;
-        }
+/* ── CONTACT ── */
+#contact { background: var(--dark); }
+#contact .section-title { color: #fff; }
+#contact .section-desc { color: rgba(255,255,255,0.4); }
+.contact-wrapper { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: start; }
+.contact-info { }
+.contact-detail { display: flex; gap: 16px; margin-bottom: 28px; align-items: flex-start; }
+.contact-icon { width: 44px; height: 44px; border-radius: 10px; background: rgba(197,160,89,0.12); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.contact-detail-text strong { display: block; color: #fff; font-size: 0.85rem; margin-bottom: 4px; }
+.contact-detail-text span { color: rgba(255,255,255,0.4); font-size: 0.82rem; }
+.form-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(197,160,89,0.15); border-radius: var(--radius-lg); padding: 40px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; color: rgba(255,255,255,0.5); font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%; padding: 14px 18px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px; color: #fff;
+  font-family: 'Inter', sans-serif; font-size: 0.9rem;
+  outline: none; transition: border-color 0.3s;
+}
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--gold); }
+.form-group select option { color: #000; background: #fff; }
+.form-group textarea { resize: none; }
+.whatsapp-btn { width: 100%; padding: 16px; background: #25D366; color: #fff; border: none; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 8px; }
+.whatsapp-btn:hover { background: #1da851; transform: translateY(-2px); }
 
-        .hero-content h1 {
-            font-size: 4.5rem;
-            line-height: 1.1;
-            border-left: 4px solid var(--gold); /* Vertical gold accent line */
-            padding-left: 30px;
-        }
+/* ── GALLERY ── */
+#gallery { background: #f0ebe0; }
+.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 260px; gap: 12px; }
+.gallery-item { border-radius: var(--radius); overflow: hidden; position: relative; cursor: pointer; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
+.gallery-item:hover img { transform: scale(1.08); }
+.gallery-item-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0); display: flex; align-items: center; justify-content: center; transition: background 0.3s; }
+.gallery-item:hover .gallery-item-overlay { background: rgba(197,160,89,0.25); }
+.gallery-item.tall { grid-row: span 2; }
 
+/* ── FOOTER ── */
+footer { background: #000; padding: 60px 8% 30px; }
+.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 60px; margin-bottom: 50px; }
+.footer-brand .brand-name { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 1.6rem; letter-spacing: 3px; margin-bottom: 16px; }
+.footer-brand p { color: rgba(255,255,255,0.35); font-size: 0.85rem; line-height: 1.8; max-width: 280px; }
+.footer-col h4 { color: rgba(255,255,255,0.5); font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px; }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul li a { color: rgba(255,255,255,0.3); text-decoration: none; font-size: 0.85rem; transition: color 0.3s; }
+.footer-col ul li a:hover { color: var(--gold); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; }
+.footer-bottom p { color: rgba(255,255,255,0.2); font-size: 0.75rem; letter-spacing: 1px; }
+.footer-socials { display: flex; gap: 16px; }
+.social-btn { width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.4); font-size: 14px; text-decoration: none; transition: all 0.3s; }
+.social-btn:hover { background: var(--gold); border-color: var(--gold); color: #fff; }
 
+/* ── WHATSAPP FLOAT ── */
+.wa-float { position: fixed; bottom: 30px; right: 30px; z-index: 9997; }
+.wa-float a { width: 56px; height: 56px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 8px 24px rgba(37,211,102,0.35); animation: waPulse 2.5s infinite; }
+@keyframes waPulse { 0%,100%{box-shadow:0 8px 24px rgba(37,211,102,0.35)} 50%{box-shadow:0 8px 36px rgba(37,211,102,0.55)} }
+.wa-float svg { width: 28px; height: 28px; fill: #fff; }
 
-        .hero { height: 100vh; position: relative; }
-        .hero .swiper-slide { background-size: cover; background-position: center; }
-        
-        .hero-content {
-            position: absolute;
-            inset: 0;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0,0,0,0.4);
-        }
-
-        .hero-content div.text-box {
-            text-align: center;
-            max-width: 800px;
-            padding: 50px;
-            /* border: 1px solid rgba(197, 160, 89, 0.1);
-            background: rgba(0, 0, 0, 0.1s);
-            backdrop-filter: blur(1px); */
-        }
-
-        .hero-content h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            color: #fff;
-            /* letter-spacing: 2px; */
-            margin-bottom: 10px;
-            font-style: italic;
-        }
-
-        .hero-content p {
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 6px;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-        }
-
-        .text-swiper { height: 40px; margin-bottom: 20px; }
-        .text-swiper .swiper-slide { color: rgba(255,255,255,0.8); font-weight: 300; letter-spacing: 2px; }
-
-        /* BUTTONS */
-        .btn {
-            display: inline-block;
-            padding: 15px 45px;
-            background: var(--gold);
-            color: #fff;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-weight: 700;
-            border-radius: 0;
-            transition: 0.5s;
-            border: 1px solid var(--gold);
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .btn:hover {
-            background: transparent;
-            color: var(--gold);
-        }
-
-        /* SERVICES GRID */
-        section { padding: 100px 10%; }
-        .section-title { text-align: center; margin-bottom: 60px; }
-        .section-title h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            color: var(--dark-bg);
-            position: relative;
-            display: inline-block;
-            padding-bottom: 15px;
-        }
-        .section-title h2::after {
-            content: "";
-            position: absolute;
-            bottom: 0; left: 50%;
-            transform: translateX(-50%);
-            width: 60px; height: 2px;
-            background: var(--gold);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .service-card {
-            background: #fff;
-            border: 1px solid #eee;
-            padding: 50px 30px;
-            text-align: center;
-            transition: 0.4s;
-        }
-        .service-card:hover {
-            border-color: var(--gold);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-        .service-card h3 { font-family: 'Playfair Display', serif; margin-bottom: 15px; font-size: 1.5rem; }
-
-        /* GALLERY */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            grid-auto-rows: 300px;
-            gap: 15px;
-        }
-        .gallery img {
-            width: 100%; height: 100%; object-fit: cover;
-            border-radius: 5px; transition: 0.5s;
-        }
-        .gallery img:hover { filter: brightness(70%); transform: scale(1.02); }
-
-        /* CONTACT FORM */
-        #contact { background: var(--dark-bg); color: #fff; }
-        #contact .section-title h2 { color: #fff; }
-        .contact-container { max-width: 700px; margin: auto; background: rgba(255,255,255,0.05); padding: 40px; border: 1px solid rgba(197, 160, 89, 0.2); }
-        .contact-container input, .contact-container select, .contact-container textarea {
-            width: 100%; padding: 15px; margin-bottom: 20px;
-            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-            color: #fff; outline: none; transition: 0.3s;
-        }
-        .contact-container input:focus, .contact-container textarea:focus { border-color: var(--gold); }
-
-        /* WHATSAPP FLOAT */
-        .whatsapp {
-            position: fixed; bottom: 30px; right: 30px;
-            background: #25D366; color: #fff; width: 60px; height: 60px;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 30px; text-decoration: none; z-index: 1000;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        }
-
-        footer { background: #000; color: #777; text-align: center; padding: 40px; font-size: 0.8rem; letter-spacing: 1px; }
-
-        @media(max-width: 768px) {
-            nav { padding: 15px 5%; }
-            nav ul { display: none; }
-            .hero-content h1 { font-size: 2.2rem; }
-            .hero-content div.text-box { padding: 25px; margin: 25px; }
-        }
-    </style>
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .dest-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+  .dest-card:first-child { grid-row: auto; grid-column: 1 / 3; }
+  .contact-wrapper { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; }
+  .stats-bar { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .dest-grid { grid-template-columns: 1fr; }
+  .dest-card:first-child { grid-column: auto; }
+  .form-row { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+  .footer-bottom { flex-direction: column; gap: 16px; }
+  .stats-bar { grid-template-columns: 1fr 1fr; }
+  .hero-overlay { padding: 0 6%; }
+}
+</style>
 </head>
 <body>
 
-<nav>
-    <h2>VASHI TOURS</h2>
-    <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#home" class="nav-logo-img">
+  <svg width="160" height="52" viewBox="0 0 160 52" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="vGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#00C6DD"/>
+        <stop offset="50%" style="stop-color:#0099CC"/>
+        <stop offset="100%" style="stop-color:#0066AA"/>
+      </linearGradient>
+      <linearGradient id="swipeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" style="stop-color:#FF6B00"/>
+        <stop offset="50%" style="stop-color:#FFB300"/>
+        <stop offset="100%" style="stop-color:#FF69B4"/>
+      </linearGradient>
+    </defs>
+    <!-- Swoosh accent line -->
+    <path d="M8 38 Q40 10 80 18 Q110 24 148 8" stroke="url(#swipeGrad)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <!-- Vashi text -->
+    <text x="6" y="34" font-family="Georgia, serif" font-size="26" font-weight="bold" font-style="italic" fill="url(#vGrad)">Vashi</text>
+    <!-- TOURS text -->
+    <text x="8" y="47" font-family="Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="4" fill="#C5A059">TOURS</text>
+    <!-- Plane icon -->
+    <text x="136" y="16" font-size="14" fill="#00C6DD">✈</text>
+  </svg>
+</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#destinations">Destinations</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Book Now</a>
+  <div class="hamburger" onclick="toggleMenu()" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
 
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#destinations" onclick="toggleMenu()">Destinations</a>
+  <a href="#gallery" onclick="toggleMenu()">Gallery</a>
+  <a href="#testimonials" onclick="toggleMenu()">Reviews</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+</div>
+
+<!-- HERO -->
 <header id="home" class="hero swiper heroSwiper">
-    <div class="swiper-wrapper">
-        <div class="swiper-slide" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e')"></div>
-        <div class="swiper-slide" style="background-image:url('https://images.unsplash.com/photo-1501785888041-af3ef285b470')"></div>
-        <div class="swiper-slide" style="background-image:url('https://images.unsplash.com/photo-1548013146-72479768bada')"></div>
+  <div class="swiper-wrapper">
+    <div class="swiper-slide" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80')"></div>
+    <div class="swiper-slide" style="background-image:url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1600&q=80')"></div>
+    <div class="swiper-slide" style="background-image:url('https://images.unsplash.com/photo-1548013146-72479768bada?w=1600&q=80')"></div>
+  </div>
+  <div class="hero-overlay">
+    <div class="hero-text">
+     <!-- <div class="hero-eyebrow">Premium Travel Since 2018</div>  -->
+      <h1>Experience<br><em>Luxury Travel</em><br>Like Never Before</h1>
+      <p class="hero-sub">Handcrafted journeys tailored to your desires.<br>From mountain retreats to beach paradises.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Plan My Trip</a>
+        <a href="#destinations" class="btn-ghost">Explore Destinations</a>
+      </div>
     </div>
-    <div class="hero-content">
-        <div class="text-box">
-            <!-- <p><b>Your Journey, Our Passion</b></p> -->
-            <h1>Experience Luxury Travel</h1>
-            <div class="swiper text-swiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">Mountain Retreats</div>
-                    <div class="swiper-slide">Beach Paradises</div>
-                    <div class="swiper-slide">City Adventures</div>
-                </div>
-            </div>
-            <a href="#contact" class="btn">Start Planning</a>
-        </div>
-    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <div class="scroll-label">Scroll</div>
+  </div>
 </header>
 
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item"><div class="stat-num">500+</div><div class="stat-label">Happy Travellers</div></div>
+  <div class="stat-item"><div class="stat-num">10+</div><div class="stat-label">Destinations</div></div>
+  <div class="stat-item"><div class="stat-num">1+</div><div class="stat-label">Years Experience</div></div>
+  <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Satisfaction Rate</div></div>
+</div>
+
+<!-- SERVICES -->
 <section id="services">
-    <div class="section-title"><h2>Our Specialities</h2></div>
-    <div class="services-grid">
-        <div class="service-card">
-            <h3>Customized Packages</h3>
-            <p>Tailor-made itineraries designed for your unique travel style and royal comfort.</p>
-        </div>
-        <div class="service-card">
-            <h3>Hotel Bookings</h3>
-            <p>Hand-picked boutique stays and 5-star resorts at exclusive negotiated rates.</p>
-        </div>
-        <div class="service-card">
-            <h3>Transport Support</h3>
-            <p>Private luxury transfers and professional chauffeurs for a seamless journey.</p>
-        </div>
+  <div class="section-label">What We Offer</div>
+  <h2 class="section-title">Our <em>Specialities</em></h2>
+  <p class="section-desc">Every journey we craft is a masterpiece — designed around your comfort, taste, and curiosity.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">✈️</div>
+      <h3>Custom Packages</h3>
+      <p>Tailor-made itineraries built around your style, budget, and dream destinations — no two trips are the same.</p>
+      <a href="#contact" class="service-link">Enquire Now →</a>
     </div>
+    <div class="service-card">
+      <div class="service-icon">🏨</div>
+      <h3>Hotel Bookings</h3>
+      <p>Hand-picked boutique stays and 5-star resorts at exclusive negotiated rates — comfort guaranteed.</p>
+      <a href="#contact" class="service-link">Enquire Now →</a>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🚗</div>
+      <h3>Luxury Transport</h3>
+      <p>Private chauffeur-driven transfers and premium vehicles for a seamless, stress-free journey every time.</p>
+      <a href="#contact" class="service-link">Enquire Now →</a>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏔️</div>
+      <h3>Adventure Tours</h3>
+      <p>Curated treks, wildlife safaris, and outdoor experiences for the thrill-seekers at heart.</p>
+      <a href="#contact" class="service-link">Enquire Now →</a>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💍</div>
+      <h3>Honeymoon Specials</h3>
+      <p>Romantic escapes crafted with love — private dinners, scenic stays, and unforgettable memories.</p>
+      <a href="#contact" class="service-link">Enquire Now →</a>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">👨‍👩‍👧</div>
+      <h3>Family Holidays</h3>
+      <p>Fun-filled, safe, and well-planned family trips that keep everyone happy — from kids to grandparents.</p>
+      <a href="#contact" class="service-link">Enquire Now →</a>
+    </div>
+  </div>
 </section>
 
+<!-- DESTINATIONS -->
+<section id="destinations">
+  <div class="section-label">Popular Picks</div>
+  <h2 class="section-title">Top <em>Destinations</em></h2>
+  <p class="section-desc">From Himalayan peaks to sun-kissed beaches — handpicked destinations we love sending you to.</p>
+  <div class="dest-grid">
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80" alt="Manali">
+      <div class="dest-card-overlay">
+        <div class="dest-badge">Most Popular</div>
+        <h3>Manali — Kasol</h3>
+        <div class="dest-meta"><span>🏔 Himachal Pradesh</span><span>5D / 4N</span></div>
+      </div>
+    </div>
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?w=700&q=80" alt="Mussoorie">
+      <div class="dest-card-overlay">
+        <div class="dest-badge">Hill Station</div>
+        <h3>Mussoorie</h3>
+        <div class="dest-meta"><span>🌿 Uttarakhand</span><span>4D / 3N</span></div>
+      </div>
+    </div>
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1548013146-72479768bada?w=700&q=80" alt="Dharamshala">
+      <div class="dest-card-overlay">
+        <div class="dest-badge">Cultural</div>
+        <h3>McLeod Ganj</h3>
+        <div class="dest-meta"><span>🙏 Dharamshala</span><span>3D / 2N</span></div>
+      </div>
+    </div>
+    <div class="dest-card">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=700&q=80" alt="Goa">
+      <div class="dest-card-overlay">
+        <div class="dest-badge">Beach</div>
+        <h3>Goa</h3>
+        <div class="dest-meta"><span>🏖 Beach Paradise</span><span>5D / 4N</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCES -->
+<section id="experiences">
+  <div class="section-label" style="color:var(--gold)">The Vashi Promise</div>
+  <h2 class="section-title">Why Travel <em>With Us</em></h2>
+  <p class="section-desc">We don't just book trips — we craft experiences that stay with you forever.</p>
+  <div class="exp-grid">
+    <div class="exp-card">
+      <div class="exp-num">01</div>
+      <h3>Personalised Planning</h3>
+      <p>Every itinerary is built from scratch for you — no templates, no cookie-cutter packages.</p>
+    </div>
+    <div class="exp-card">
+      <div class="exp-num">02</div>
+      <h3>24/7 Travel Support</h3>
+      <p>Our team is always a call away — before, during, and after your journey.</p>
+    </div>
+    <div class="exp-card">
+      <div class="exp-num">03</div>
+      <h3>Best Price Guarantee</h3>
+      <p>Premium experiences at fair prices. We negotiate directly with hotels and operators.</p>
+    </div>
+    <div class="exp-card">
+      <div class="exp-num">04</div>
+      <h3>Trusted by Hundreds</h3>
+      <p>500+ happy travellers and counting — with reviews that speak for themselves.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
 <section id="gallery">
-    <div class="section-title"><h2>Inspiration Gallery</h2></div>
-    <div class="gallery">
-        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470" alt="Travel 1">
-        <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429" alt="Travel 2">
-        <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090" alt="Travel 3">
-        <img src="images/image1.jpg" alt="Travel 4">
+  <div class="section-label">Visual Journey</div>
+  <h2 class="section-title">Inspiration <em>Gallery</em></h2>
+  <p class="section-desc">A glimpse of the places, moments, and memories we help create.</p>
+  <div class="gallery-grid">
+    <div class="gallery-item tall">
+      <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=700&q=80" alt="Mountains">
+      <div class="gallery-item-overlay"></div>
     </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=700&q=80" alt="Forest">
+      <div class="gallery-item-overlay"></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?w=700&q=80" alt="Desert">
+      <div class="gallery-item-overlay"></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=700&q=80" alt="Beach">
+      <div class="gallery-item-overlay"></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1548013146-72479768bada?w=700&q=80" alt="India">
+      <div class="gallery-item-overlay"></div>
+    </div>
+  </div>
 </section>
 
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-label">Happy Travellers</div>
+  <h2 class="section-title">What Our Guests <em>Say</em></h2>
+  <p class="section-desc">Don't take our word for it — here's what our travellers have to say about their Vashi experience.</p>
+  <div class="test-grid">
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-quote">"Vashi planned our Manali trip perfectly. Every hotel, every transfer — flawless. We didn't have to worry about a thing. Will absolutely book again!"</p>
+      <div class="test-author">
+        <div class="test-avatar">RK</div>
+        <div><div class="test-name">Rohit K.</div><div class="test-trip">Manali — Kasol Trip</div></div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-quote">"Our honeymoon in Goa was a dream come true. The team arranged everything — private dinner, beach villa, everything. Truly a luxury experience!"</p>
+      <div class="test-author">
+        <div class="test-avatar">SP</div>
+        <div><div class="test-name">chinna & chinnu</div><div class="test-trip">Honeymoon — Goa</div></div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-quote">"Booked a family trip to Mussoorie with 3 kids. The team was incredibly patient and thoughtful — every activity was age-appropriate. Highly recommend!"</p>
+      <div class="test-author">
+        <div class="test-avatar">AM</div>
+        <div><div class="test-name">Anil M.</div><div class="test-trip">Family Holiday — Mussoorie</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
 <section id="contact">
-    <div class="section-title"><h2>Request a Quote</h2></div>
-    <div class="contact-container">
-        <input id="name" type="text" placeholder="Full Name">
-        <input id="phone" type="tel" placeholder="WhatsApp Number">
-        <select id="destination">
-            <option value="" style="color:#000;">Select Destination</option>
-            <option value="Manali" style="color:#000;">Manali - Kasol</option>
-            <option value="Mussoorie" style="color:#000;">Mussoorie - Landour</option>
-            <option value="Dharamshala" style="color:#000;">Mcleodganj</option>
-        </select>
-        <textarea id="message" rows="4" placeholder="Special Requests..."></textarea>
-        <button class="btn" style="width:100%;" onclick="sendWhatsApp()">Inquire via WhatsApp</button>
+  <div class="section-label" style="color:var(--gold)">Get In Touch</div>
+  <h2 class="section-title">Request a <em>Quote</em></h2>
+  <p class="section-desc">Tell us your dream destination and we'll craft the perfect itinerary for you — completely free.</p>
+  <div class="contact-wrapper">
+    <div class="contact-info">
+      <div class="contact-detail">
+        <div class="contact-icon">📞</div>
+        <div class="contact-detail-text">
+          <strong>Call / WhatsApp</strong>
+          <span>+91 83283 44905/ +91 73969 60035</span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">✉️</div>
+        <div class="contact-detail-text">
+          <strong>Email Us</strong>
+          <span>hello@vashitours.com</span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">📍</div>
+        <div class="contact-detail-text">
+          <strong>Our Office</strong>
+          <span>Laxmi Nagar,Delhi, India</span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">🕐</div>
+        <div class="contact-detail-text">
+          <strong>Working Hours</strong>
+          <span>Mon – Sat: 9 AM to 7 PM</span>
+        </div>
+      </div>
     </div>
+    <div class="form-card">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input id="name" type="text" placeholder="Your name">
+        </div>
+        <div class="form-group">
+          <label>WhatsApp Number</label>
+          <input id="phone" type="tel" placeholder="+91 XXXXX XXXXX">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Destination</label>
+          <select id="destination">
+            <option value="">Select Destination</option>
+            <option>Manali — Kasol</option>
+            <option>Mussoorie — Landour</option>
+            <option>McLeod Ganj</option>
+            <option>Goa</option>
+            <option>Shimla</option>
+            <option>Custom Destination</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Travel Month</label>
+          <select id="month">
+            <option value="">Select Month</option>
+            <option>January</option><option>February</option><option>March</option>
+            <option>April</option><option>May</option><option>June</option>
+            <option>July</option><option>August</option><option>September</option>
+            <option>October</option><option>November</option><option>December</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Number of Travellers</label>
+        <input id="travellers" type="number" placeholder="e.g. 2" min="1">
+      </div>
+      <div class="form-group">
+        <label>Special Requests</label>
+        <textarea id="message" rows="3" placeholder="Any special requirements, preferences, or questions..."></textarea>
+      </div>
+      <button class="whatsapp-btn" onclick="sendWhatsApp()">
+        <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Enquire via WhatsApp
+      </button>
+    </div>
+  </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-    © 2026 VASHI TOURS & TRAVELS | DEFINING LUXURY TRAVEL
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="brand-name">VASHI TOURS</div>
+      <p>Creating extraordinary travel experiences across India and beyond. Your journey, our passion — since 2025.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#destinations">Destinations</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Destinations</h4>
+      <ul>
+        <li><a href="#contact">Manali — Kasol</a></li>
+        <li><a href="#contact">Mussoorie</a></li>
+        <li><a href="#contact">McLeod Ganj</a></li>
+        <li><a href="#contact">Udaipur</a></li>
+        <li><a href="#contact">Shimla</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 VASHI TOURS & TRAVELS — DEFINING LUXURY TRAVEL</p>
+    <div class="footer-socials">
+      <a href="https://wa.me/917396960035" class="social-btn" target="_blank">W</a>
+      <a href="#" class="social-btn">In</a>
+      <a href="#" class="social-btn">Ig</a>
+    </div>
+  </div>
 </footer>
 
-<a class="whatsapp" href="https://wa.me/917396960035" target="_blank">💬</a>
+<!-- WHATSAPP FLOAT -->
+<div class="wa-float">
+  <a href="https://wa.me/917396960035" target="_blank" title="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 <script>
-    new Swiper('.heroSwiper', { loop: true, autoplay: { delay: 5000 }, effect: 'fade' });
-    new Swiper('.text-swiper', { direction: 'vertical', loop: true, autoplay: { delay: 2500 } });
+new Swiper('.heroSwiper', {
+  loop: true,
+  autoplay: { delay: 5000, disableOnInteraction: false },
+  effect: 'fade',
+  speed: 1200
+});
 
-    function sendWhatsApp() {
-        const name = document.getElementById("name").value;
-        const phone = document.getElementById("phone").value;
-        const dest = document.getElementById("destination").value;
-        const msg = document.getElementById("message").value;
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+});
 
-        if(!name || !phone) {
-            alert("Please provide your name and contact details.");
-            return;
-        }
+function toggleMenu() {
+  const m = document.getElementById('mobileMenu');
+  m.classList.toggle('open');
+}
 
-        const text = `*New Royal Inquiry*%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Destination:* ${dest}%0A*Notes:* ${msg}`;
-        window.open(`https://wa.me/917396960035?text=${text}`, "_blank");
-    }
+function sendWhatsApp() {
+  const name = document.getElementById('name').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const dest = document.getElementById('destination').value;
+  const month = document.getElementById('month').value;
+  const travellers = document.getElementById('travellers').value;
+  const msg = document.getElementById('message').value.trim();
+  if (!name || !phone) { alert('Please enter your name and WhatsApp number.'); return; }
+  const text = `*✈ New Inquiry — Vashi Tours*%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Destination:* ${dest || 'Not selected'}%0A*Travel Month:* ${month || 'Flexible'}%0A*Travellers:* ${travellers || 'Not specified'}%0A*Notes:* ${msg || 'None'}`;
+  window.open(`https://wa.me/917396960035?text=${text}`, '_blank');
+}
 </script>
 </body>
 </html>
